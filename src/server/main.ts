@@ -6,6 +6,8 @@ import webpackConfig from "../../webpack.config.js";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 
+import { router } from "./routes/app.router.js";
+
 const __dirname = import.meta.dirname;
 
 const css = path.join(__dirname, "../../", "public/css")
@@ -16,19 +18,17 @@ const PORT = 9000;
 
 const compiler = webpack(webpackConfig as Configuration);
 
-app.set("views", express.static(html));
+app.set("views", html);
 app.set("view engine", "ejs");
 
 app.use(express.static(css))
+
+app.use("/", router)
 
 app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath
 }))
 app.use(webpackHotMiddleware(compiler))
-
-app.get("/", (req, res) => {
-    res.render("login");
-})
 
 app.listen(PORT, () => {
     console.log("Server running on PORT: " + PORT)

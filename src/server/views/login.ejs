@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <main class="flex flex-col min-h-dvh">
+        <article class="w-[80%] md:w-[50%] max-w-[450px] m-auto">
+            <form method="post" id="login-form" class="flex flex-col items-center gap-8 shadow border rounded-lg p-8">
+                <fieldset class="w-full">
+                    <legend class="font-bold text-4xl mb-7">Inicia sesión</legend>
+                    <ul class="flex flex-col gap-6">
+                        <li>
+                            <label for="email" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">
+                                Email:
+                            </label>
+                            <input type="text" name="email" placeholder="any@mail.com" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full py-1.5 px-2">
+                            <div class="text-red-600" id="email-errors"></div>
+                        </li>
+                        <li>
+                            <label for="password" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">
+                                Contraseña: 
+                            </label>
+                            <input type="password" name="password" placeholder="********" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full focus:border-gray-500 py-1.5 px-2">
+                            <div class="text-red-600" id="password-errors"></div>
+                        </li>
+                    </ul>
+                </fieldset>
+                <button type="submit" id="submit-btn" class="w-full text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg px-5 py-2.5">Inicia sesión</button>
+                <p class="w-full text-gray-500">Aún no tienes una cuenta? <a class="text-blue-700" href="#">Registrate aquí</a></p>
+            </form>
+        </article>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
