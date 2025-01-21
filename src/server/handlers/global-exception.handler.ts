@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { Request, Response, NextFunction } from "express";
 import { ZodError, ZodIssue } from "zod";
 
@@ -37,6 +38,24 @@ export default function GlobalExceptionHandler() {
             problem.status = 400;
             problem.detail = `(${err.issues.length}) Errors were found in the request body`
             problem.errors = formatValidationErrors(err.issues);
+        }
+
+        if (err instanceof AxiosError) {
+            const response = err.response?.data;
+
+            const { 
+                title = problem.title, 
+                status = problem.status, 
+                detail = problem.detail,
+                type: _type = "",
+                instance: _instance = "",
+                ...additional
+            } = response;
+
+            problem.title = title
+            problem.status = status
+            problem.detail = detail
+            problem.meta = additional
         }
     
         res.status(problem.status).json(problem);

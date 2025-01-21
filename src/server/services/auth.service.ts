@@ -8,12 +8,16 @@ export default class AuthService {
     ) {}
 
     public async signup(signupRequest: SignupRequest) {
-        return await this.axios
+        const response = await this.axios
             .post<LoggedInResponse>("/auth/signup", signupRequest);
+
+        return response.data;
     }
 
     public async login(loginRequest: LoginRequest) {
-        return await this.axios
+        const response = await this.axios
             .post<LoggedInResponse>("/auth/login", loginRequest);
+
+        return response.data;
     }
 }

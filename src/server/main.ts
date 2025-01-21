@@ -1,4 +1,5 @@
 import path from "path";
+import * as dotenv from "dotenv"
 import express, { Express } from "express";
 
 import webpack, { Configuration } from "webpack";
@@ -14,8 +15,10 @@ const __dirname = import.meta.dirname;
 const css = path.join(__dirname, "../../", "public/css")
 const html = path.join(__dirname, "views")
 
+dotenv.config();
+
 const app: Express = express();
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 
 const compiler = webpack(webpackConfig as Configuration);
 
