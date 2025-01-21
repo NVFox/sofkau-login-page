@@ -7,6 +7,7 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 
 import { router } from "./routes/app.router.js";
+import GlobalExceptionHandler from "./handlers/global-exception.handler.js";
 
 const __dirname = import.meta.dirname;
 
@@ -17,6 +18,8 @@ const app: Express = express();
 const PORT = 9000;
 
 const compiler = webpack(webpackConfig as Configuration);
+
+app.use(express.json())
 
 app.set("views", html);
 app.set("view engine", "ejs");
@@ -29,6 +32,8 @@ app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath
 }))
 app.use(webpackHotMiddleware(compiler))
+
+app.use(GlobalExceptionHandler())
 
 app.listen(PORT, () => {
     console.log("Server running on PORT: " + PORT)

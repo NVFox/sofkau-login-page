@@ -5,4 +5,6 @@ export const router = Router();
 
 const auth = new AuthController();
 
-router.get("/auth/login", auth.getLogin)
+router.route("/auth/login")
+    .get(auth.getLogin)
+    .post(auth.login)
