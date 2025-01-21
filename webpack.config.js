@@ -27,6 +27,14 @@ export default {
                         ]
                     }
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                    { loader: "postcss-loader" }
+                ]
             }
         ]
     },
