@@ -6,13 +6,14 @@
       "moduleResolution": "node",
       "baseUrl": "./",
       "paths": {
-        "@/*": ["src/server/*"]
+        "@/*": ["src/server/*"],
+        "#/*": ["src/shared/*"],
       },
       "outDir": "./dist/server",
       "esModuleInterop": true,
       "allowJs": true,
       "skipLibCheck": true,
     },
-    "include": ["src/server/**/*.ts"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "src/client/**/*", "dist"]
 }
