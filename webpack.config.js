@@ -1,14 +1,18 @@
 import path from "path";
+import webpack from "webpack";
 const __dirname = import.meta.dirname;
 
 export default {
+    mode: "development",
     entry: {
-        client: "./src/client/index.ts"       
+        client: ["webpack-hot-middleware/client?reload=true", "./src/client/index.ts"]       
     },
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "dist")
+        path: path.resolve(__dirname, "dist"),
+        publicPath: "/"
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
@@ -26,6 +30,9 @@ export default {
             }
         ]
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     resolve: {
         extensions: [".ts", ".js"]
     }

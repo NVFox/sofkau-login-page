@@ -3,9 +3,16 @@
       "target": "ES6",
       "module": "ESNext",
       "strict": true,
-      "esModuleInterop": true,      
+      "moduleResolution": "node",
+      "baseUrl": "./",
+      "paths": {
+        "@/*": ["src/server/*"]
+      },
+      "outDir": "./dist/server",
+      "esModuleInterop": true,
+      "allowJs": true,
       "skipLibCheck": true,
     },
-    "include": ["src"],
+    "include": ["src/server/**/*.ts"],
     "exclude": ["node_modules", "dist"]
 }
