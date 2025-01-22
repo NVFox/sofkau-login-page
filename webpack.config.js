@@ -42,6 +42,10 @@ export default {
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts", ".js"],
+        alias: {
+            "@": path.resolve(__dirname, "src/client/"),
+            "#": path.resolve(__dirname, "src/shared/")
+        }
     }
 }

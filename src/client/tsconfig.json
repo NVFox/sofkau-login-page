@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "ESNext",
+      "strict": true,
+      "moduleResolution": "bundler",
+      "paths": {
+        "@/*": ["./*"],
+        "#/*": ["../shared/*"],
+      },
+      "outDir": "../../dist/client",
+      "esModuleInterop": true,
+      "allowJs": true,
+      "skipLibCheck": true,
+    },
+    "exclude": ["node_modules", "../server/**/*", "dist"]
+}

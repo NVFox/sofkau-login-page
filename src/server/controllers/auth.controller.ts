@@ -1,5 +1,5 @@
 import AuthService from "@/services/auth.service";
-import { loginSchema, signupSchema } from "@/validation/auth-validation.schema";
+import { loginSchema, signupSchema } from "#/validation/auth-validation.schema";
 import { Request, Response } from "express";
 
 export default class AuthController {

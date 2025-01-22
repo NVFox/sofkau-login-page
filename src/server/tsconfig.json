@@ -4,16 +4,14 @@
       "module": "ESNext",
       "strict": true,
       "moduleResolution": "node",
-      "baseUrl": "./",
       "paths": {
-        "@/*": ["src/server/*"],
-        "#/*": ["src/shared/*"],
+        "@/*": ["./*"],
+        "#/*": ["../shared/*"],
       },
-      "outDir": "./dist/server",
+      "outDir": "../../dist/server",
       "esModuleInterop": true,
       "allowJs": true,
       "skipLibCheck": true,
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "src/client/**/*", "dist"]
+    "exclude": ["node_modules", "../client/**/*", "dist"]
 }
