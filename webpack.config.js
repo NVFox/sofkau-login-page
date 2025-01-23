@@ -7,7 +7,8 @@ export default {
     mode: "development",
     entry: {
         client: ["webpack-hot-middleware/client?reload=true", "./src/client/index.ts"],
-        signup: ["webpack-hot-middleware/client?reload=true", "./src/client/signup.ts"]
+        signup: ["webpack-hot-middleware/client?reload=true", "./src/client/signup.ts"],
+        profile: ["webpack-hot-middleware/client?reload=true", "./src/client/profile.ts"],
     },
     output: {
         filename: "[name].bundle.js",
