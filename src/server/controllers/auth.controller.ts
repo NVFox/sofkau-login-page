@@ -15,6 +15,13 @@ export default class AuthController {
         const signupRequest = await signupSchema.parseAsync(req.body);
         const response = await this.authService.signup(signupRequest);
 
+        res.cookie("token", response.token, {
+            httpOnly: true,
+            secure: false,
+            expires: new Date(Date.now() + response.expiresIn),
+            sameSite: "strict"
+        });
+
         res.status(200).json(response);
     }
 
@@ -25,6 +32,13 @@ export default class AuthController {
     public async login(req: Request, res: Response) {
         const loginRequest = await loginSchema.parseAsync(req.body);
         const response = await this.authService.login(loginRequest);
+
+        res.cookie("token", response.token, {
+            httpOnly: true,
+            secure: false,
+            expires: new Date(Date.now() + response.expiresIn),
+            sameSite: "strict"
+        });
 
         res.status(200).json(response);
     }

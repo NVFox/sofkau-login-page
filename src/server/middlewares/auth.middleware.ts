@@ -7,12 +7,12 @@ export interface AuthenticatedRequest extends Request {
 
 export default function AuthMiddleware() {
     return (req: Request, res: Response, next: NextFunction) => {
-        if (!req.headers.authorization)
+        if (!req.headers.authorization && !req.cookies.token)
             return req.accepts("html") 
                 ? res.redirect("/auth/login") 
                 : next(new UnathorizedException("Token not present"));
 
-        const authorization = req.headers.authorization.trim();
+        const authorization = (req.headers.authorization || "Bearer " + req.cookies.token).trim();
 
         if (!authorization || !authorization.startsWith("Bearer"))
             return req.accepts("html") 
@@ -25,9 +25,8 @@ export default function AuthMiddleware() {
             return req.accepts("html") 
                 ? res.redirect("/auth/login") 
                 : next(new UnathorizedException("Token not present or invalid"));
-
-        const request = req as AuthenticatedRequest;
-        request.token = token;
+        
+        (req as AuthenticatedRequest).token = token;
 
         next()
     }
