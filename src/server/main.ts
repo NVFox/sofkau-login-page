@@ -19,7 +19,7 @@ const html = path.join(__dirname, "views")
 dotenv.config();
 
 const app: Express = express();
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.BRIDGE_PORT || 9000;
 
 const compiler = webpack(webpackConfig as Configuration);
 
