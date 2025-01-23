@@ -15,6 +15,6 @@ export default class AuthService {
 
     public async login(loginRequest: LoginRequest) {
         const { data } = await this.axios.post("/auth/login", loginRequest);
-        this.storageService.store("token", data);
+        this.storageService.store("token", data.token);
     }
 }

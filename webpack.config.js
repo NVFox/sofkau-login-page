@@ -6,7 +6,7 @@ const __dirname = import.meta.dirname;
 export default {
     mode: "development",
     entry: {
-        client: ["webpack-hot-middleware/client?reload=true", "./src/client/index.ts"],
+        login: ["webpack-hot-middleware/client?reload=true", "./src/client/login.ts"],
         signup: ["webpack-hot-middleware/client?reload=true", "./src/client/signup.ts"],
         profile: ["webpack-hot-middleware/client?reload=true", "./src/client/profile.ts"],
     },
