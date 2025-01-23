@@ -17,6 +17,8 @@ type ProblemDetails = {
     [field: string]: any
 }
 
+const HttpErrors = [ "ECONNREFUSED", "ETIMEDOUT" ]
+
 export default function GlobalExceptionHandler() {
     return (err: Error, req: Request, res: Response, next: NextFunction) => {
         if (res.headersSent) 
@@ -43,19 +45,24 @@ export default function GlobalExceptionHandler() {
         if (err instanceof AxiosError) {
             const response = err.response?.data;
 
-            const { 
-                title = problem.title, 
-                status = problem.status, 
-                detail = problem.detail,
-                type: _type = "",
-                instance: _instance = "",
-                ...additional
-            } = response;
-
-            problem.title = title
-            problem.status = status
-            problem.detail = detail
-            problem.meta = additional
+            if (HttpErrors.includes(err?.code || "")) {
+                problem.status = err?.status || problem.status;
+                problem.detail = err?.code || problem.detail;
+            } else {
+                const { 
+                    title = problem.title, 
+                    status = problem.status, 
+                    detail = problem.detail,
+                    type: _type = "",
+                    instance: _instance = "",
+                    ...additional
+                } = response;
+    
+                problem.title = title
+                problem.status = status
+                problem.detail = detail
+                problem.meta = additional
+            }
         }
     
         res.status(problem.status).json(problem);
