@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (validator.valid()) {
             authService.signup(validator.validated() as SignupRequest)
+                .then(() => window.location.href = "/user/profile")
                 .catch(error => handleServerError(error as Error))
         }
     })
