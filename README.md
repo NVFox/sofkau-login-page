@@ -48,8 +48,8 @@ sofkau-login-page/
 
 ### Descripción de Carpetas
 
-- **src/client**: Contiene el código del lado del cliente, incluyendo componentes de React, estilos y configuración de Webpack.
-- **src/server**: Contiene el código del lado del servidor, incluyendo controladores, modelos y rutas.
+- **src/client**: Contiene el código del lado del cliente, incluyendo validaciones y manejo de peticiones HTTP.
+- **src/server**: Contiene el código del lado del servidor, incluyendo controladores, manejadores y rutas.
 - **src/shared**: Contiene el código compartido entre cliente y servidor, incluyendo modelos, peticiones, respuestas y esquemas de validación.
 - **public**: Contiene archivos estáticos, como el archivo HTML principal, heredado de la primera versión de este proyecto.
 
