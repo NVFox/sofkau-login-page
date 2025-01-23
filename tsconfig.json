@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/server/*"],
+      "#/*": ["src/shared/*"],
+    },
+    "outDir": "./dist/server",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "src/client/**/*", "dist"]
+}
