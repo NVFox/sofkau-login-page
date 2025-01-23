@@ -1,3 +1,4 @@
+import UnathorizedException from "@/exceptions/unauthorized.exception";
 import { AxiosError } from "axios";
 import { Request, Response, NextFunction } from "express";
 import { ZodError, ZodIssue } from "zod";
@@ -33,6 +34,11 @@ export default function GlobalExceptionHandler() {
             status: 500,
             detail: err?.message ?? "Something went wrong",
             instance: req.path
+        }
+
+        if (err instanceof UnathorizedException) {
+            problem.title = "Unauthorized"
+            problem.status = 401;
         }
     
         if (err instanceof ZodError) {
