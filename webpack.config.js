@@ -1,11 +1,13 @@
 import path from "path";
 import webpack from "webpack";
+import Dotenv from "dotenv-webpack"
 const __dirname = import.meta.dirname;
 
 export default {
     mode: "development",
     entry: {
-        client: ["webpack-hot-middleware/client?reload=true", "./src/client/index.ts"]       
+        client: ["webpack-hot-middleware/client?reload=true", "./src/client/index.ts"],
+        signup: ["webpack-hot-middleware/client?reload=true", "./src/client/signup.ts"]
     },
     output: {
         filename: "[name].bundle.js",
@@ -39,7 +41,8 @@ export default {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new Dotenv()
     ],
     resolve: {
         extensions: [".ts", ".js"],
