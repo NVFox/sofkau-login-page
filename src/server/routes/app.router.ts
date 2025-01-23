@@ -10,8 +10,9 @@ const authService = new AuthService(axiosInstance);
 const auth = new AuthController(authService);
 
 router.route("/auth/signup")
+    .get(auth.getSignup)
     .post(AsyncRequestHandler(async (req, res) => await auth.signup(req, res)))
 
 router.route("/auth/login")
-    .get(auth.login)
+    .get(auth.getLogin)
     .post(AsyncRequestHandler(async (req, res) => await auth.login(req, res)))

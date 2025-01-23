@@ -7,6 +7,10 @@ export default class AuthController {
         private authService: AuthService
     ) {}
 
+    public getSignup(_: Request, res: Response) {
+        res.render("signup");
+    }
+
     public async signup(req: Request, res: Response) {
         const signupRequest = await signupSchema.parseAsync(req.body);
         const response = await this.authService.signup(signupRequest);
@@ -15,7 +19,7 @@ export default class AuthController {
     }
 
     public getLogin(_: Request, res: Response) {
-        res.render("login")
+        res.render("login");
     }
 
     public async login(req: Request, res: Response) {
