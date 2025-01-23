@@ -6,19 +6,25 @@ export interface AuthenticatedRequest extends Request {
 }
 
 export default function AuthMiddleware() {
-    return (req: Request, _: Response, next: NextFunction) => {
+    return (req: Request, res: Response, next: NextFunction) => {
         if (!req.headers.authorization)
-            return next(new UnathorizedException("Token not present"));
+            return req.accepts("html") 
+                ? res.redirect("/auth/login") 
+                : next(new UnathorizedException("Token not present"));
 
         const authorization = req.headers.authorization.trim();
 
         if (!authorization || !authorization.startsWith("Bearer"))
-            return next(new UnathorizedException("Token not present or invalid"));
+            return req.accepts("html") 
+                ? res.redirect("/auth/login") 
+                : next(new UnathorizedException("Token not present or invalid"));
 
         const token = authorization.substring(7).trim();
 
         if (!token)
-            return next(new UnathorizedException("Token not present or invalid"));
+            return req.accepts("html") 
+                ? res.redirect("/auth/login") 
+                : next(new UnathorizedException("Token not present or invalid"));
 
         const request = req as AuthenticatedRequest;
         request.token = token;
